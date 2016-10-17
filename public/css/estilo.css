@@ -1,0 +1,65 @@
+/*
+EIF400 II-2016 C. Loria-Saenz
+Proyecto I - 05/09/2016
+
+        NOMBRE              		ID           		HORARIO
+1)Valeria Espinoza Gonzalez		116530404		1 PM	
+2)César Guzmán Miranda			116300393		1 PM
+3)Fabián Morera Gutiérrez		115950838		1 PM
+4)Beatriz Padilla Moreno		402320394		1 PM
+5)Jhonny Vargas Arias			116030322		1 PM
+*/
+.overlay{
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:1001;
+	opacity:.50;
+}
+.popup {
+	display: none;
+	position: fixed;
+	top: 20%;
+	left: 30%;
+	width: 40%;
+	height: 65%;
+	padding: 16px;
+    border-style: double;
+	border: 5px solid #31708f;
+	background-color: white;
+    border-radius: 20px;
+	z-index:1002;
+	overflow: auto;
+    text-align: center;
+}
+
+
+.form_bg {
+    background-color:#eee;
+    color:#666;
+    padding:20px;
+    border-radius:10px;
+    position: absolute;
+    border:1px solid #fff;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.loginError {
+	border-radius: 5px;
+	border:1px solid #fff;
+}
+
+.align-center {
+    text-align:center;
+	padding: 5px;
+}

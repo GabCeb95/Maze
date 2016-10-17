@@ -1,0 +1,175 @@
+<!--
+EIF400 II-2016 C. Loria-Saenz
+Proyecto I - 05/09/2016
+
+        NOMBRE              		ID           		HORARIO
+1)Valeria Espinoza Gonzalez		116530404		1 PM	
+2)César Guzmán Miranda			116300393		1 PM
+3)Fabián Morera Gutiérrez		115950838		1 PM
+4)Beatriz Padilla Moreno		402320394		1 PM
+5)Jhonny Vargas Arias			116030322		1 PM
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+      <title>LABERINTOS</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" type="text/css" href="/css/estilo.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <script type="text/javascript" src="/scripts/Observable.js"></script>
+      <script type="text/javascript" src="/scripts/Dibujo.js"></script>
+      <script type="text/javascript" src="/scripts/Rect.js"></script>
+      <script type="text/javascript" src="/scripts/Line.js"></script>
+      <script type="text/javascript" src="/scripts/Cronometro.js"></script>
+      <script type="text/javascript" src="/scripts/Move.js"></script>
+      <script type="text/javascript" src="/scripts/RBT.js"></script>
+      <script type="text/javascript" src="/scripts/Solution.js"></script>
+      <script type="text/javascript" src="/scripts/Maze.js"></script>
+      <script type="text/javascript" src="/scripts/Matrix.js"></script>
+      <script type="text/javascript" src="/scripts/Cell.js"></script>
+      <script type="text/javascript" src="/scripts/Moves.js"></script>
+      <script type="text/javascript" src="/scripts/Random.js"></script>
+      <script type="text/javascript" src="/scripts/CronoModel.js"></script>
+      <script type="text/javascript" src="/scripts/CronoView.js"></script>
+      <script type="text/javascript" src="/scripts/CronoController.js"></script>
+      <script type="text/javascript" src="/scripts/Model.js"></script>
+      <script type="text/javascript" src="/scripts/View.js"></script>
+      <script type="text/javascript" src="/scripts/Worker.js"></script>
+      <script type="text/javascript" src="/scripts/Controller.js"></script>
+
+  </head>
+
+  <body background="/images/a3.jpg">
+      <div id="overlay" class="overlay"></div>
+
+      <div id="popup" class="popup">
+          <div class="container">
+              <div class="form_bg">
+                  <form class="align-center">
+                      <h2 class="text-center">Iniciar sesión</h2>
+                      <br/>
+                      <div class="form-group">
+                          <input type="email" style="text-align:center;" class="form-control" id="userid" placeholder="ID usuario">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" style="text-align:center;" class="form-control" id="pwd" placeholder="Contraseña">
+                      </div>
+                      <br/>
+                      <div class="alert alert-danger" id="loginError" style="display:none">
+                          <strong>Error!</strong> Usuario o clave incorrecta.
+                      </div>
+                      <div class="alert alert-success" id="registerOk" style="display:none">
+                          <strong>Usuario registrado!</strong> Ahora puede iniciar sesión.
+                      </div>
+                      <div class="alert alert-danger" id="registerError" style="display:none">
+                          <strong>Error!</strong> Usuario ya existe.
+                      </div>
+                      <div class="btn-group btn-group-justified">
+                          <div class="btn-group">
+                              <button id="login" type="button" class="btn btn-primary">Ingresar</button>
+                          </div>
+                          <div class="btn-group">
+                              <button id="signup" type="button" class="btn btn-success">Registrarse</button>
+                          </div>
+                      </div>
+                      <div class="align-center">
+                          <button type="button" class="btn btn-default" id="local">Continuar sin conexión</button>
+                      </div>
+                  </form>
+              </div>
+
+          </div>
+      </div>
+
+      <div class="container">
+          <div class="page-header">
+              <h1>JUGANDO LABERINTOS</h1>
+          </div>
+      </div>
+      <div class="container">
+          <div class="row">
+              <div class="col-sm-4">
+                  <div align="center">
+                  </div>
+                  <div class="panel-group" align="center">
+                  </div>
+                  <h3>Nivel de dificultad:</h3>
+                  <div class="btn-group btn-group-justified">
+                      <div class="btn-group">
+                          <button id="facil" type="button" class="btn btn-primary">Bajo</button>
+                      </div>
+                      <div class="btn-group">
+                          <button id="medio" type="button" class="btn btn-success">Medio</button>
+                      </div>
+                      <div class="btn-group">
+                          <button id="alto" type="button" class="btn btn-danger">Alto</button>
+                      </div>
+                  </div>
+                  <div class="panel-group" align="center">
+                      <div class="panel panel-default" align="center">
+                          <div class="panel-heading" width="50" align="center">
+                              <h4 class="panel-title"><a data-toggle="collapse" href="#collapse2">Personalizado</a></h4>
+                          </div>
+                          <div id="collapse2" class="panel-collapse collapse" align="center">
+                              <div class="panel-body" align="center">
+                                  <input id="rows" class="form-control input-sm" type="number" placeholder="Filas" size="number" min="1" max="15">
+                                  <input id="columns" class="form-control input-sm" type="number" placeholder="Columnas" size="number" min="1" max="29">
+                              </div>
+                              <div class="panel-footer" align="center">
+                                  <button id="genMaze" type="button" class="btn btn-default">Generar</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <h3>Opciones del juego:</h3>
+                  <div class="btn-group btn-group-justified">
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-default" id="save">Guardar</button>
+                      </div>
+                      <div class="btn-group">
+                          <button type="button" class="btn btn-default" id="load">Cargar</button>
+                      </div>
+                  </div>
+                  <audio id="errorSound" controls="controls" style="display:none">
+                  <source src="/sounds/beep.mp3" type="audio/mp3"/>
+                </audio>
+                  <audio id="winningSound" controls="controls" style="display:none">
+                  <source src="/sounds/win.mp3" type="audio/mp3"/>
+                </audio>
+              </div>
+              <div class="col-sm-8" align="center">
+                  <div id="container" align="right">
+                      <button type="button" class="btn btn-default btn-xs" id="inicio">
+                            <span class="glyphicon glyphicon-play"></span> Iniciar
+                        </button>
+                      <button type="button" class="btn btn-default btn-xs" id="parar" disabled>
+                            <span class="glyphicon glyphicon-pause"></span> Pausar
+                        </button>
+                      <div>
+                          <h3>
+                                  <span class="reloj" id="Horas">00</span>
+                                  <span class="reloj" id="Minutos">:00</span>
+                                  <span class="reloj" id="Segundos">:00</span>
+                                  <span class="reloj" id="Centesimas">:00</span>
+                                </h3>
+                      </div>
+                  </div>
+                  <svg height="400px" width="100%" id='mazeSVG' color="white"></svg>
+                  <div align="right">
+                      <button id="btnSolution" type="button" class="btn btn-warning">Ver solución</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+  <script>
+      let model = new Model();
+      let view = new View(model);
+      let controller = new Controller(model, view);
+  </script>
+
+</html>
